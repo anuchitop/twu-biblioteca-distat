@@ -1,8 +1,8 @@
 package com.twu.biblioteca.biblioteca;
 
 import com.twu.biblioteca.Biblioteca;
-import org.junit.Before;
-import org.junit.Rule;
+import com.twu.biblioteca.menu.ListOfBooks;
+import com.twu.biblioteca.menu.Menu;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -19,9 +19,15 @@ public class BibliotecaTest {
 
     @Test
     public void choosingMenuIDShouldReturnTheRightMenu() {
-        String data = "1";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-//        String className = app.selectMenu().getClass().getSimpleName();
-//        assertEquals("ListOfBooks", className);
+        // Valid input
+        assertEquals("ListOfBooks", app.getMenu(1).getClass().getSimpleName());
+        assertEquals("Others", app.getMenu(2).getClass().getSimpleName());
+    }
+
+    @Test
+    public void choosingInvalidMenuReturnNull() {
+        // Input as zero
+        Menu className = app.getMenu(0);
+        assertEquals(null, className);
     }
 }

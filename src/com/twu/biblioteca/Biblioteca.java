@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.books.BookCollection;
 import com.twu.biblioteca.menu.Menu;
-import com.twu.biblioteca.menu.MenuFactory;
+import com.twu.biblioteca.menu.MenuCollection;
 
 import java.util.Scanner;
 
@@ -17,17 +17,18 @@ public class Biblioteca {
         System.out.print("Enter Number: ");
 
         Scanner menuID = new Scanner(System.in);
-        int numberInput = menuID.nextInt();
-
-        MenuFactory menuFactory = new MenuFactory(numberInput);
-        Menu output = menuFactory.getMenu();
-        if(output != null) {
-            output.showProperty();
-        } else {
-            System.out.println("Please select again");
+        Integer numberInput = menuID.nextInt();
+        try {
+            this.getMenu(numberInput).showProperty();
+        } catch (NullPointerException e) {
+            System.out.println("Invalid: Please select again");
             this.selectMenu();
         }
+    }
 
+    public Menu getMenu(Integer inputNum) {
+        MenuCollection menuCollection = new MenuCollection();
+        return menuCollection.getMenu(inputNum);
     }
 
     public static void main(String[] args) {

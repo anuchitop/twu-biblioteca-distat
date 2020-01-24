@@ -1,10 +1,15 @@
 package com.twu.biblioteca.menu;
 
+import java.util.HashMap;
+
 public class MenuFactory {
 //    public static Menu invalidMenu = new Menu
     private int menuID;
     private boolean isListOfBooks;
     private boolean isOthers;
+    private Map<int, Menu> mapping = {
+            1 -> ListOfBooks.,
+    }
 
     public MenuFactory(int menuID) {
         this.menuID = menuID;
@@ -26,3 +31,7 @@ public class MenuFactory {
         }
     }
 }
+
+
+// 1 -> ListOfBook
+// 2 -> dddcc

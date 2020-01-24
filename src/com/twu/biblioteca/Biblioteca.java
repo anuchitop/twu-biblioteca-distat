@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.books.BookCollection;
-import com.twu.biblioteca.menu.Invalid;
 import com.twu.biblioteca.menu.Menu;
 import com.twu.biblioteca.menu.MenuFactory;
 
@@ -14,7 +13,7 @@ public class Biblioteca {
         return "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
     }
 
-    public Menu selectMenu() {
+    public void selectMenu() {
         System.out.print("Enter Number: ");
 
         Scanner menuID = new Scanner(System.in);
@@ -23,10 +22,10 @@ public class Biblioteca {
         MenuFactory menuFactory = new MenuFactory(numberInput);
         Menu output = menuFactory.getMenu();
         if(output != null) {
-            return output;
+            output.showProperty();
         } else {
             System.out.println("Please select again");
-            return this.selectMenu();
+            this.selectMenu();
         }
 
     }

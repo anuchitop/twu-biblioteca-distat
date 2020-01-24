@@ -1,12 +1,18 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.books.Book;
+import com.twu.biblioteca.books.BookCollection;
+
+import java.util.ArrayList;
+
 public class ListOfBooks implements Menu {
-    public String ListOfBooks() {
-        System.out.println("List of Books");
-        return "List of Books";
-    }
+    BookCollection bookCollection = new BookCollection();
+
     @Override
     public void showProperty() {
-        System.out.println("List of Books");
+        ArrayList<Book> listOfBook = bookCollection.fetchBook();
+        for (Book book:listOfBook) {
+            System.out.println(book);
+        }
     }
 }

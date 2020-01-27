@@ -1,11 +1,8 @@
 package com.twu.biblioteca.biblioteca;
 
 import com.twu.biblioteca.Biblioteca;
-import com.twu.biblioteca.menu.ListOfBooks;
 import com.twu.biblioteca.menu.Menu;
 import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 

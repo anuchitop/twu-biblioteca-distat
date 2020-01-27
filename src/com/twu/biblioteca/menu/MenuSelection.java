@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MenuCollection {
+public class MenuSelection {
     private Map<Integer, Menu> menuMap = new HashMap<>();
     private List<Integer> keyList = new ArrayList<Integer>(menuMap.keySet());
 
-    public MenuCollection() {
+    public MenuSelection() {
 
         this.menuMap.put(1, new ListOfBooks());
         this.menuMap.put(2, new Others());

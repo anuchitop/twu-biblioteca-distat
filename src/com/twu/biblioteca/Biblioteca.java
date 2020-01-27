@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.books.BookCollection;
 import com.twu.biblioteca.menu.Menu;
-import com.twu.biblioteca.menu.MenuCollection;
+import com.twu.biblioteca.menu.MenuSelection;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class Biblioteca {
         Scanner menuID = new Scanner(System.in);
         Integer numberInput = menuID.nextInt();
         try {
-            this.getMenu(numberInput).showProperty();
+            this.getMenu(numberInput).showMenuProperty();
         } catch (NullPointerException e) {
             System.out.println("Invalid: Please select again");
             this.selectMenu();
@@ -27,8 +27,8 @@ public class Biblioteca {
     }
 
     public Menu getMenu(Integer inputNum) {
-        MenuCollection menuCollection = new MenuCollection();
-        return menuCollection.getMenu(inputNum);
+        MenuSelection menuSelection = new MenuSelection();
+        return menuSelection.getMenu(inputNum);
     }
 
     public static void main(String[] args) {

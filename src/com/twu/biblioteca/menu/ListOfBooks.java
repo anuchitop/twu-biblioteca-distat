@@ -14,11 +14,8 @@ public class ListOfBooks implements Menu {
         for (Book book:bookCollection.getBookList()) {
             System.out.println(book);
         }
-        System.out.println("Please select the book you wish to proceed: ");
-        this.selectBook(this.userInput());
-        System.out.println("Do you wish to checkout this Book (Y/N) ?");
-        this.checkout(this.userInput());
-        this.listAllBooks();
+        System.out.println("Do you want to Checkout or Return");
+        this.checkoutOrReturn(this.userInput());
     }
 
     public Book selectBook(String input) {
@@ -30,17 +27,41 @@ public class ListOfBooks implements Menu {
         return this.selectedBook;
     }
 
-    public void checkout(String condition) {
+    public void checkoutOrReturn(String userChoice) {
+        System.out.println("Please select the book you wish to proceed: ");
+        this.selectBook(this.userInput());
+
+        if (userChoice.equals("Checkout")) {
+            System.out.println("Do you wish to checkout this Book (Y/N) ?");
+            this.checkoutBook(this.userInput());
+            this.listAllBooks();
+        } else if (userChoice.equals("Return")) {
+            System.out.println("Do you wish to return this Book (Y/N) ?");
+            this.returnBook(this.userInput());
+            this.listAllBooks();
+        }
+    }
+
+    public void checkoutBook(String condition) {
         if (condition.equals("Y")) {
             if (this.selectedBook.getIsAvailable()) {
                 this.selectedBook.setAvailable(false);
                 System.out.println("You have checkout "+this.selectedBook);
             } else {
-                System.out.println("This book is not available");
+                System.out.println("Invalid Checkout");
             }
-        } if (condition.equals("N")) {
-            ;
-        }
+        } else { ; }
+    }
+
+    public void returnBook(String condition) {
+        if (condition.equals("Y")) {
+            if (this.selectedBook.getIsAvailable().equals(false)) {
+                this.selectedBook.setAvailable(true);
+                System.out.println("You have return "+this.selectedBook);
+            } else {
+                System.out.println("Invalid Return");
+            }
+        } else { ; }
     }
 
     public String userInput() {

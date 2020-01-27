@@ -17,7 +17,16 @@ public class ListOfBooksTest {
     @Test
     public void checkoutBookShouldChangeTheAvailableState() {
         Book selectedBook = listOfBooks.selectBook("1");
-        listOfBooks.checkout("Y");
+        listOfBooks.checkoutBook("Y");
         assertEquals(false, selectedBook.getIsAvailable());
+    }
+
+    @Test
+    public void returnBookShouldChangeTheAvailableState() {
+        Book selectedBook = listOfBooks.selectBook("1");
+        listOfBooks.checkoutBook("Y");
+        assertEquals(false, selectedBook.getIsAvailable());
+        listOfBooks.returnBook("Y");
+        assertEquals(true, selectedBook.getIsAvailable());
     }
 }

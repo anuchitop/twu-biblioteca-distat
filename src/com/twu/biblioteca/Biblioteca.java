@@ -14,7 +14,7 @@ public class Biblioteca {
     }
 
     public void selectMenu() {
-        System.out.print("Enter Number: ");
+        System.out.print("Enter Menu Number: ");
 
         Scanner menuID = new Scanner(System.in);
         Integer numberInput = menuID.nextInt();

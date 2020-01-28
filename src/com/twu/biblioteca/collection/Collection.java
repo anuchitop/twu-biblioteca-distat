@@ -10,6 +10,7 @@ public class Collection {
     public ArrayList<Book> getBookList() {
         return bookList;
     }
+    public ArrayList<Movies> getMoviesList() { return moviesList; }
 
     public Collection() {
         this.fetchBook();

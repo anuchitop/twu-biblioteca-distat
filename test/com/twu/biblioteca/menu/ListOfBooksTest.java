@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.collection.Book;
+import com.twu.biblioteca.collection.Item;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,7 +10,7 @@ public class ListOfBooksTest {
 
     @Test
     public void selectBookFromTheListShouldReturnProperOne() {
-        Book selectedBook = listOfBooks.selectBook("1");
+        Item selectedBook = listOfBooks.selectItem("1");
 
         assertEquals("Unlocking Android", selectedBook.getTitle());
         assertEquals(true, selectedBook.getIsAvailable());
@@ -17,9 +18,9 @@ public class ListOfBooksTest {
 
     @Test
     public void checkoutBookShouldChangeTheAvailableState() {
-        Book selectedBook = listOfBooks.selectBook("1");
+        Item selectedBook = listOfBooks.selectItem("1");
 
-        listOfBooks.checkoutBook("Y");
+        listOfBooks.checkoutItem("Y");
 
         assertEquals(false, selectedBook.getIsAvailable());
     }
@@ -29,10 +30,10 @@ public class ListOfBooksTest {
 
     @Test
     public void returnBookShouldChangeTheAvailableState() {
-        Book selectedBook = listOfBooks.selectBook("1");
+        Item selectedBook = listOfBooks.selectItem("1");
 
-        listOfBooks.checkoutBook("Y");
-        listOfBooks.returnBook("Y");
+        listOfBooks.checkoutItem("Y");
+        listOfBooks.returnItem("Y");
 
         assertEquals(true, selectedBook.getIsAvailable());
     }

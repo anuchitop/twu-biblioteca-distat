@@ -18,7 +18,7 @@ public class BibliotecaTest {
     public void choosingMenuIDShouldReturnTheRightMenu() {
         // Valid input
         assertEquals("ListOfBooks", app.getMenu(1).getClass().getSimpleName());
-        assertEquals("Others", app.getMenu(2).getClass().getSimpleName());
+        assertEquals("ListOfMovies", app.getMenu(2).getClass().getSimpleName());
     }
 
     @Test

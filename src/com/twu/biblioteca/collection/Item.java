@@ -2,7 +2,7 @@ package com.twu.biblioteca.collection;
 
 import java.util.Date;
 
-abstract class Item {
+public abstract class Item {
     protected int id;
     protected String title;
     protected String author;

@@ -1,21 +1,21 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.collection.Book;
 import com.twu.biblioteca.collection.Collection;
 import com.twu.biblioteca.collection.Item;
+import com.twu.biblioteca.collection.Movies;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ListOfBooks implements ListOfItems, Menu {
+public class ListOfMovies implements ListOfItems, Menu {
     private Collection collection = new Collection();
-    private Item selectedBook;
+    private Item selectedMovies;
 
     @Override
     public void listAllItems() {
-        System.out.println("=============== List of Books ===============");
-        for (Item book : collection.getBookList()) {
-            System.out.println(book);
+        System.out.println("=============== List of Movies ===============");
+        for (Item movies : collection.getMoviesList()) {
+            System.out.println(movies);
         }
         System.out.println("=============================================");
         System.out.println("Do you want to 1) Checkout or 2) Return or 3) Back to Main Menu");
@@ -27,28 +27,29 @@ public class ListOfBooks implements ListOfItems, Menu {
     public Item selectItem(String input) {
         Integer inputAsInteger = Integer.parseInt(input);
         Integer convertedID = inputAsInteger - 1;
-        this.selectedBook = listOfItemsFromCollection().get(convertedID);
-        System.out.println(this.selectedBook);
+        this.selectedMovies = listOfItemsFromCollection().get(convertedID);
+        System.out.println(this.selectedMovies);
 
-        return this.selectedBook;
+        return this.selectedMovies;
     }
 
     @Override
     public void checkoutOrReturn(String userChoice) {
         if (userChoice.equals("1")) {
-            System.out.println("Please select the book you wish to checkout: ");
+            System.out.println("Please select the movies you wish to checkout: ");
             this.selectItem(this.userInput());
-            System.out.println("Do you wish to checkout this Book (Y/N) ?");
+            System.out.println("Do you wish to checkout this movies (Y/N) ?");
             String result = this.checkoutItem(this.userInput());
             System.out.println(result);
             this.listAllItems();
         } else if (userChoice.equals("2")) {
-            System.out.println("Please select the book you wish to return: ");
+            System.out.println("Please select the movies you wish to return: ");
             this.selectItem(this.userInput());
-            System.out.println("Do you wish to return this Book (Y/N) ?");
+            System.out.println("Do you wish to return this movies (Y/N) ?");
             this.returnItem(this.userInput());
             this.listAllItems();
         } else if (userChoice.equals("3")) {
+//            MenuSelection menu = new MenuSelection();
             menu.startMenuSelection();
         } else {
             System.out.println("Invalid, Please fill again");
@@ -58,20 +59,20 @@ public class ListOfBooks implements ListOfItems, Menu {
 
     @Override
     public String checkoutItem(String condition) {
-        if (!condition.equals("Y") || !this.selectedBook.getIsAvailable()) {
+        if (!condition.equals("Y") || !this.selectedMovies.getIsAvailable()) {
             return "Invalid Checkout";
         }
 
-        this.selectedBook.setAvailable(false);
-        return "You have checkout " + this.selectedBook;
+        this.selectedMovies.setAvailable(false);
+        return "You have checkout " + this.selectedMovies;
     }
 
     @Override
     public void returnItem(String condition) {
         if (condition.equals("Y")) {
-            if (this.selectedBook.getIsAvailable().equals(false)) {
-                this.selectedBook.setAvailable(true);
-                System.out.println("You have return " + this.selectedBook);
+            if (this.selectedMovies.getIsAvailable().equals(false)) {
+                this.selectedMovies.setAvailable(true);
+                System.out.println("You have return " + this.selectedMovies);
             } else {
                 System.out.println("Invalid Return");
             }
@@ -86,8 +87,8 @@ public class ListOfBooks implements ListOfItems, Menu {
     }
 
 
-    public ArrayList<Book> listOfItemsFromCollection() {
-        return this.collection.getBookList();
+    public ArrayList<Movies> listOfItemsFromCollection() {
+        return this.collection.getMoviesList();
     }
 
     @Override
@@ -95,3 +96,5 @@ public class ListOfBooks implements ListOfItems, Menu {
         this.listAllItems();
     }
 }
+
+

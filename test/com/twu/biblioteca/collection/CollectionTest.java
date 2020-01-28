@@ -1,12 +1,12 @@
-package com.twu.biblioteca.books;
+package com.twu.biblioteca.collection;
 
 import org.junit.Test;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BookCollectionTest {
-    BookCollection bookCollection = new BookCollection();
+public class CollectionTest {
+    Collection collection = new Collection();
 
     @Test
     public void testOnBookAttribute() {
@@ -17,6 +17,6 @@ public class BookCollectionTest {
 
     @Test
     public void testFetchingBookFromTheDB() {
-        assertEquals(3, bookCollection.getNumberOfBooks());
+        assertEquals(3, collection.getNumberOfBooks());
     }
 }

@@ -1,16 +1,16 @@
-package com.twu.biblioteca.books;
+package com.twu.biblioteca.collection;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BookCollection {
+public class Collection {
     private ArrayList<Book> bookList = new ArrayList<>();
 
     public ArrayList<Book> getBookList() {
         return bookList;
     }
 
-    public BookCollection() {
+    public Collection() {
         this.fetchBook();
     }
 

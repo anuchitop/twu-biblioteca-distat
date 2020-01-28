@@ -2,8 +2,8 @@ package com.twu.biblioteca.collection;
 
 import java.util.Date;
 
-public class Book extends Item {
-    public Book(int id, String title, String author, Date publicationYear, Boolean isAvailable) {
+public class Movies extends Item {
+    public Movies(int id, String title, String author, Date publicationYear, Boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;

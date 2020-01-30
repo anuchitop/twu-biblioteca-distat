@@ -1,8 +1,8 @@
-package test.java.com.twu.biblioteca;
+package com.twu.biblioteca;
 
-import main.java.com.twu.Biblioteca;
-import main.java.com.twu.menu.Menu;
-import org.junit.jupiter.api.Test;
+import com.twu.Biblioteca;
+import com.twu.menu.Menu;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

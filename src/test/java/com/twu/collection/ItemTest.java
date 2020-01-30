@@ -1,7 +1,7 @@
-package test.java.com.twu.collection;
+package com.twu.collection;
 
-import main.java.com.twu.collection.Book;
-import main.java.com.twu.collection.Movies;
+import com.twu.collection.Book;
+import com.twu.collection.Movies;
 import org.junit.Test;
 import java.util.Date;
 

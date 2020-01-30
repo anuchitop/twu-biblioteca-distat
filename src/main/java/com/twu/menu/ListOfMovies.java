@@ -1,8 +1,9 @@
-package main.java.com.twu.menu;
+package com.twu.menu;
 
-import main.java.com.twu.Collection;
-import main.java.com.twu.Item;
-import main.java.com.twu.collection.Movies;
+//import com.twu.menu.Menu;
+import com.twu.Collection;
+import com.twu.Item;
+import com.twu.collection.Movies;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -49,7 +50,6 @@ public class ListOfMovies implements ListOfItems, Menu {
             this.returnItem(this.userInput());
             this.listAllItems();
         } else if (userChoice.equals("3")) {
-            MenuSelection menu = new MenuSelection();
             menu.startMenuSelection();
         } else {
             System.out.println("Invalid, Please fill again");

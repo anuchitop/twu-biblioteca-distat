@@ -1,6 +1,7 @@
-package main.java.com.twu.menu;
+package com.twu.menu;
 
 import java.util.*;
+import com.twu.menu.Menu;
 
 public class MenuSelection {
     private Map<Integer, Menu> menuMap = new HashMap<>();
@@ -9,6 +10,7 @@ public class MenuSelection {
         this.mapMenuWithID();
     }
 
+    // TODO: Menu selection is still buggy and need refactor
     public void startMenuSelection() {
         System.out.println("Please select the following menu by number");
         System.out.println("1: List of Books");
@@ -19,6 +21,7 @@ public class MenuSelection {
     }
 
     private Map<Integer, Menu> mapMenuWithID() {
+        System.out.println("mapMenuWithID has been called");
         this.menuMap.put(1, new ListOfBooks());
         this.menuMap.put(2, new ListOfMovies());
         this.menuMap.put(3, new QuitApplication());

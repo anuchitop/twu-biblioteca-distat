@@ -1,4 +1,4 @@
-package main.java.com.twu;
+package com.twu;
 
 public class Account {
     private String name;

@@ -1,6 +1,6 @@
-package test.java.com.twu.collection;
+package com.twu.collection;
 
-import main.java.com.twu.Collection;
+import com.twu.Collection;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

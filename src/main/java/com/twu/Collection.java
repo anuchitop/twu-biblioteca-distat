@@ -1,7 +1,7 @@
-package main.java.com.twu;
+package com.twu;
 
-import main.java.com.twu.collection.Book;
-import main.java.com.twu.collection.Movies;
+import com.twu.collection.Book;
+import com.twu.collection.Movies;
 
 import java.util.ArrayList;
 import java.util.Date;

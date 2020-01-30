@@ -1,4 +1,4 @@
-package main.java.com.twu;
+package com.twu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,28 +20,33 @@ public class Login {
         ;
     }
 
-    public String verifyUsernameInput() throws IOException {
-        String libraryID = bufferedReader.readLine();
-        boolean validFormat = libraryID.matches("[0-9]{3}-[0-9]{4}");
-        boolean accountExist = this.isUserExist(libraryID);
+    public boolean verifyUsernameInput() throws IOException {
+        String libraryIDInput = bufferedReader.readLine();
+        boolean validFormat = libraryIDInput.matches("[0-9]{3}-[0-9]{4}");
+        boolean accountExist = this.isInputValid("libraryID", libraryIDInput);
         if (!validFormat) {
             printStream.println("Invalid Username Format");
-            return "Not Cool Man";
+            return false;
         } else if (!accountExist){
             printStream.println("User not existed");
-            return "Not Cool Again Man";
-        } else {
-            return "SO GOOD MAN";
-        }
+            return false;
+        } return true;
     }
 
-    public String verifyPasswordInput() {
-        return "SHIT";
+    public boolean verifyPasswordInput() throws IOException {
+        String passwordInput = bufferedReader.readLine();
+        boolean validPassword = this.isInputValid("password", passwordInput);
+        if (!validPassword) {
+            printStream.println("Invalid Password");
+            return false;
+        } return true;
     }
 
-    public boolean isUserExist(String libraryID) {
+    public boolean isInputValid(String validation, String input) {
         for (Account account:accountList) {
-            if (account.getLibraryID().equals(libraryID)) {
+            if (validation.equals("libraryID") && account.getLibraryID().equals(input)) {
+                return true;
+            } else if (validation.equals("password") && account.getPassword().equals(input)) {
                 return true;
             }
         } return false;

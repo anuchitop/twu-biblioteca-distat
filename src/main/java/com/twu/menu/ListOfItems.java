@@ -1,6 +1,6 @@
-package main.java.com.twu.menu;
+package com.twu.menu;
 
-import main.java.com.twu.Item;
+import com.twu.Item;
 
 
 public interface ListOfItems{

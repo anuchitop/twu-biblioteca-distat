@@ -1,4 +1,4 @@
-package main.java.com.twu;
+package com.twu;
 
 import java.util.Date;
 

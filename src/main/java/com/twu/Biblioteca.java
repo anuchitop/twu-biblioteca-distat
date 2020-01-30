@@ -1,7 +1,7 @@
-package main.java.com.twu;
+package com.twu;
 
-import main.java.com.twu.menu.Menu;
-import main.java.com.twu.menu.MenuSelection;
+import com.twu.menu.Menu;
+import com.twu.menu.MenuSelection;
 
 public class Biblioteca {
     private Collection collection = new Collection();

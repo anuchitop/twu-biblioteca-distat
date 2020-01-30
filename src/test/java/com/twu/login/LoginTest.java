@@ -1,7 +1,7 @@
-package test.java.com.twu.login;
+package com.twu.login;
 
-import main.java.com.twu.Account;
-import main.java.com.twu.Login;
+import com.twu.Account;
+import com.twu.Login;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matcher.*;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class LoginTest {
@@ -58,13 +61,25 @@ public class LoginTest {
     }
 
     @Test
-    public void shouldReturnInvalidMessageWhenPasswordDoesNotMatch() {
+    public void shouldReturnInvalidMessageWhenPasswordDoesNotMatch() throws IOException {
         // message returned should contain some Invalid message
         // Arrange
+        when(bufferedReader.readLine()).thenReturn("pass");
 
         // Action
+        login.verifyPasswordInput();
 
         // Assert
+        verify(printStream).println("Invalid Password");
+    }
+
+    @Test
+    public void shouldReturnTrueIfPasswordMatches() throws IOException {
+        // Arrange
+        when(bufferedReader.readLine()).thenReturn("password");
+
+        // Assert/Action
+        assertThat(login.verifyPasswordInput(), is(true));
     }
 
     @Test

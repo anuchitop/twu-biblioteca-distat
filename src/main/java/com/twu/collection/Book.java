@@ -1,6 +1,6 @@
-package main.java.com.twu.collection;
+package com.twu.collection;
 
-import main.java.com.twu.Item;
+import com.twu.Item;
 
 import java.util.Date;
 

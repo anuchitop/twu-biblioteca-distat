@@ -64,6 +64,8 @@ public class LoginTest {
     public void shouldReturnInvalidMessageWhenPasswordDoesNotMatch() throws IOException {
         // message returned should contain some Invalid message
         // Arrange
+        Account account1 = new Account("John Cena", "111-1111", "password");
+        login.setCurrentAccount(account1);
         when(bufferedReader.readLine()).thenReturn("pass");
 
         // Action
@@ -76,6 +78,8 @@ public class LoginTest {
     @Test
     public void shouldReturnTrueIfPasswordMatches() throws IOException {
         // Arrange
+        Account account1 = new Account("John Cena", "111-1111", "password");
+        login.setCurrentAccount(account1);
         when(bufferedReader.readLine()).thenReturn("password");
 
         // Assert/Action

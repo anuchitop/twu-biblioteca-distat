@@ -21,7 +21,7 @@ public class MenuSelection {
     }
 
     private Map<Integer, Menu> mapMenuWithID() {
-        System.out.println("mapMenuWithID has been called");
+//        System.out.println("mapMenuWithID has been called");
         this.menuMap.put(1, new ListOfBooks());
         this.menuMap.put(2, new ListOfMovies());
         this.menuMap.put(3, new QuitApplication());

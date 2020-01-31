@@ -3,6 +3,12 @@ package com.twu;
 import com.twu.menu.Menu;
 import com.twu.menu.MenuSelection;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
 public class Biblioteca {
     private Collection collection = new Collection();
 
@@ -15,10 +21,22 @@ public class Biblioteca {
         return menuSelection.getMenu(inputNum);
     }
 
-    public static void main(String[] args) {
-        Biblioteca biblioteca = new Biblioteca();
-        System.out.println(biblioteca.showWelcomeMessage());
-        MenuSelection menu = new MenuSelection();
-        menu.startMenuSelection();
+    public static void main(String[] args) throws IOException {
+        ArrayList<Account> accountList = new ArrayList<>();
+        InputStreamReader reader = new InputStreamReader(System.in);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        PrintStream printStream = new PrintStream(System.out);
+        Account account1 = new Account("John Cena", "111-1111", "password");
+        Account account2 = new Account("Peter Parker", "222-2222", "password2");
+        Account account3 = new Account("Elon Mustnot", "333-3333", "password3");
+        accountList.add(account1);
+        accountList.add(account2);
+        accountList.add(account3);
+        Login login = new Login(accountList, bufferedReader, printStream);
+        // TODO: Check with Aj'Nong if this is practical
+//        while(login.getCurrentAccount().equals(null)) {
+//            login.initLogin();
+//        }
+        login.initLogin();
     }
 }

@@ -31,21 +31,23 @@ public class Login {
         // TODO: Get rid off this one
         Biblioteca biblioteca = new Biblioteca();
         System.out.println(biblioteca.showWelcomeMessage());
-        System.out.println("Welcome "+currentAccount.getName());
+        System.out.println("Welcome " + currentAccount.getName());
         MenuSelection menu = new MenuSelection();
         menu.startMenuSelection();
     }
 
     public void verifyUsernameAndPassword() throws IOException {
         System.out.println("Username: ");
-        while(!this.verifyLibraryIDInput()) {
+        while (!this.verifyLibraryIDInput()) {
             System.out.println("Please enter username again:");
         }
         System.out.println("Password: ");
-        while(!this.verifyPasswordInput()) {
+        while (!this.verifyPasswordInput()) {
             System.out.println("Please enter password again:");
         }
     }
+
+    // ================ LibraryID Verification Section ================ //
 
     public Boolean verifyLibraryIDInput() throws IOException {
         String libraryIDInput = this.input();
@@ -72,33 +74,31 @@ public class Login {
     }
 
     public Boolean isLibraryIDExisted(String libraryIDInput) {
-        for (Account account:accountList) {
+        for (Account account : accountList) {
             if (account.getLibraryID().equals(libraryIDInput)) {
                 this.currentAccount = account;
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
+
+    // ================ Password Verification Section ================ //
 
     public Boolean verifyPasswordInput() throws IOException {
         String passwordInput = this.input();
-        boolean validPassword = this.isPasswordInputInDB(passwordInput);
-        if (!validPassword) {
-            printStream.println("Invalid Password");
-            return false;
-        } return true;
+        return isPasswordInputInDB(passwordInput);
     }
 
     public boolean isPasswordInputInDB(String input) {
-        if (currentAccount.getPassword().equals(input)) {
-            System.out.println(currentAccount.getName());
-            System.out.println("Password Checked");
-            return true;
-        } return false;
-    }
-
-    public ArrayList<Account> fetchAccountFromDB() {
-        return accountList;
+        Boolean passwordMatchesLibraryID = currentAccount.getPassword().equals(input);
+        if (!passwordMatchesLibraryID) {
+            printStream.println("Invalid Password");
+            return false;
+        }
+        System.out.println(currentAccount.getName());
+        System.out.println("Password Checked");
+        return true;
     }
 
     public String input() throws IOException {

@@ -1,7 +1,5 @@
 package com.twu.collection;
 
-import com.twu.Item;
-
 
 public interface ListOfItems{
 

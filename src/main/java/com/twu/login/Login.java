@@ -12,6 +12,11 @@ public class Login {
     private ArrayList<Account> accountList;
     private BufferedReader bufferedReader;
     private PrintStream printStream;
+
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
     private Account currentAccount;
 
     public void setCurrentAccount(Account currentAccount) {
@@ -37,9 +42,9 @@ public class Login {
     }
 
     public void verifyUsernameAndPassword() throws IOException {
-        System.out.println("Username: ");
+        System.out.println("LibraryID: ");
         while (!this.verifyLibraryIDInput()) {
-            System.out.println("Please enter username again:");
+            System.out.println("Please enter LibraryID again:");
         }
         System.out.println("Password: ");
         while (!this.verifyPasswordInput()) {
@@ -90,14 +95,12 @@ public class Login {
         return isPasswordInputInDB(passwordInput);
     }
 
-    public boolean isPasswordInputInDB(String input) {
-        Boolean passwordMatchesLibraryID = currentAccount.getPassword().equals(input);
+    public Boolean isPasswordInputInDB(String input) {
+        boolean passwordMatchesLibraryID = currentAccount.getPassword().equals(input);
         if (!passwordMatchesLibraryID) {
             printStream.println("Invalid Password");
             return false;
         }
-        System.out.println(currentAccount.getName());
-        System.out.println("Password Checked");
         return true;
     }
 

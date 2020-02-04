@@ -1,7 +1,4 @@
-package com.twu;
-
-import com.twu.collection.Book;
-import com.twu.collection.Movies;
+package com.twu.collection;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +10,10 @@ public class Collection {
     public ArrayList<Book> getBookList() {
         return bookList;
     }
-    public ArrayList<Movies> getMoviesList() { return moviesList; }
+
+    public ArrayList<Movies> getMoviesList() {
+        return moviesList;
+    }
 
     public Collection() {
         this.fetchBook();
@@ -23,6 +23,7 @@ public class Collection {
     public void addBook(Book book) {
         this.bookList.add(book);
     }
+
     public void addMovies(Movies movies) {
         this.moviesList.add(movies);
     }
@@ -31,6 +32,7 @@ public class Collection {
         Integer size = this.bookList.size();
         return size;
     }
+
     public Integer getNumberOfMovies() {
         Integer size = this.moviesList.size();
         return size;

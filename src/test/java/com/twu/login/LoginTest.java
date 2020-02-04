@@ -84,7 +84,20 @@ public class LoginTest {
     }
 
     @Test
-    public void shouldMatchRightCredentialWhenLoggedInAsThatSpecificPerson() {
-        // Name of the logged in person should matches with the username
+    public void shouldMatchRightCredentialWhenLoggedInAsThatSpecificPerson() throws IOException {
+        // Arrange
+        when(bufferedReader.readLine()).thenReturn("111-1111");
+
+        // Action
+        login.verifyLibraryIDInput();
+
+        // Arrange
+        when(bufferedReader.readLine()).thenReturn("password");
+
+        // Action
+        login.verifyPasswordInput();
+
+        // Assert
+        assertThat(login.getCurrentAccount().getName(), is("John Cena"));
     }
 }

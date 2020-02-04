@@ -1,4 +1,4 @@
-package com.twu;
+package com.twu.collection;
 
 import java.util.Date;
 
@@ -35,6 +35,6 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return String.format(this.id+": "+this.title+" by "+this.author + " | Availability: "+this.isAvailable);
+        return this.id+": "+this.title+" by "+this.author + " | Availability: "+this.isAvailable;
     }
 }

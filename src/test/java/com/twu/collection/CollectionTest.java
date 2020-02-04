@@ -1,6 +1,5 @@
 package com.twu.collection;
 
-import com.twu.Collection;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

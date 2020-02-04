@@ -1,5 +1,6 @@
 package com.twu;
 
+import com.twu.collection.Collection;
 import com.twu.menu.Menu;
 import com.twu.menu.MenuSelection;
 import com.twu.login.Account;

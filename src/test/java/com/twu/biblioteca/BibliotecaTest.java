@@ -2,13 +2,11 @@ package com.twu.biblioteca;
 
 import com.twu.Biblioteca;
 import com.twu.login.Account;
-import com.twu.login.Login;
 import com.twu.menu.Menu;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -30,17 +28,11 @@ public class BibliotecaTest {
 
     @Test
     public void shouldShowRightMessageWhenLoggedInAsSpecificUser() {
-        System.out.println(app.showWelcomeMessage());
         Account mockAccount = new Account("John Cena", "111-1111", "password");
         app.setAccount(mockAccount);
         app.initBibliotecaWithLoggedInAccount();
         assertThat(app.getAccount().getName(), equalTo("John Cena"));
         verify(printStream).println("Welcome: John Cena");
-    }
-
-    @Test
-    public void welcomeMessageShouldAppearWhenRunningTheApp() {
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", app.showWelcomeMessage());
     }
 
     @Test

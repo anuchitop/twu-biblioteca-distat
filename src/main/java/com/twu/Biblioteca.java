@@ -1,6 +1,5 @@
 package com.twu;
 
-import com.twu.collection.Collection;
 import com.twu.login.Login;
 import com.twu.menu.Menu;
 import com.twu.menu.MenuSelection;
@@ -23,7 +22,7 @@ public class Biblioteca {
 
     public void startApplication() throws IOException {
         this.performLogin();
-        System.out.println(this.showWelcomeMessage());
+        this.showWelcomeMessage();
         this.initBibliotecaWithLoggedInAccount();
         this.startMenuSelection();
     }
@@ -34,8 +33,8 @@ public class Biblioteca {
         this.setAccount(login.getCurrentAccount());
     }
 
-    public String showWelcomeMessage() {
-        return "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+    public void showWelcomeMessage() {
+        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
     }
 
     public void initBibliotecaWithLoggedInAccount() {

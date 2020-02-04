@@ -48,7 +48,7 @@ public class Biblioteca {
 
     public Menu getMenu(Integer inputNum) {
         MenuSelection menuSelection = new MenuSelection();
-        return menuSelection.getMenu(inputNum);
+        return menuSelection.getMenuByInput(inputNum);
     }
 
     public Account getAccount() {

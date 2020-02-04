@@ -11,9 +11,8 @@ public class MenuSelection {
 
     // TODO: Menu selection is still buggy and need refactor
     public void startMenuSelection() {
-        this.listAllMenus();
-        System.out.println("Enter Menu Number: ");
-        selectMenu(userInput()).showMenuProperty();
+        listAllMenus();
+        selectMenu();
     }
 
     private Map<Integer, Menu> mapMenuWithID() {
@@ -23,22 +22,23 @@ public class MenuSelection {
         return menuMap;
     }
 
-    public Menu selectMenu(Integer input) {
-        return this.getMenu(input);
+    public void selectMenu() {
+        System.out.println("Enter Menu Number: ");
+        this.getMenuByInput(userInput()).showMenuProperty();
+    }
+
+    public Menu getMenuByInput(Integer menuID) {
+        if (menuMap.keySet().contains(menuID)) {
+            return menuMap.get(menuID);
+        } else {
+            return null;
+        }
     }
 
     private Integer userInput() {
         Scanner menuID = new Scanner(System.in);
         Integer input = menuID.nextInt();
         return input;
-    }
-
-    public Menu getMenu(Integer menuID) {
-        if (menuMap.keySet().contains(menuID)) {
-            return menuMap.get(menuID);
-        } else {
-            return null;
-        }
     }
 
     private void listAllMenus() {

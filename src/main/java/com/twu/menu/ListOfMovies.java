@@ -1,7 +1,9 @@
-package com.twu.collection;
+package com.twu.menu;
 
 //import com.twu.menu.Menu;
-import com.twu.menu.Menu;
+import com.twu.collection.Collection;
+import com.twu.collection.Item;
+import com.twu.collection.Movies;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,7 +1,6 @@
 package com.twu.menu;
 
 import com.twu.collection.Item;
-import com.twu.collection.ListOfBooks;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

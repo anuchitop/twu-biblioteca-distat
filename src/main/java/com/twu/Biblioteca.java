@@ -27,13 +27,13 @@ public class Biblioteca {
         this.startMenuSelection();
     }
 
-    public void performLogin() throws IOException {
+    private void performLogin() throws IOException {
         login = new Login(bufferedReader, printStream);
         login.initLogin();
         this.setAccount(login.getCurrentAccount());
     }
 
-    public void showWelcomeMessage() {
+    private void showWelcomeMessage() {
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
     }
 

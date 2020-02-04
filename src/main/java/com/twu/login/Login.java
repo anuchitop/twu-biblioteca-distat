@@ -1,8 +1,5 @@
 package com.twu.login;
 
-import com.twu.Biblioteca;
-import com.twu.menu.MenuSelection;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -97,6 +94,7 @@ public class Login {
     }
 
     public void fetchAccountListFromDB() {
+        // Mock Account
         Account account1 = new Account("John Cena", "111-1111", "password");
         Account account2 = new Account("Peter Parker", "222-2222", "password2");
         Account account3 = new Account("Elon Mustnot", "333-3333", "password3");

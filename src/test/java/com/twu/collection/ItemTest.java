@@ -1,7 +1,5 @@
 package com.twu.collection;
 
-//import com.twu.collection.Book;
-//import com.twu.collection.Movies;
 import org.junit.Test;
 
 import java.util.Calendar;

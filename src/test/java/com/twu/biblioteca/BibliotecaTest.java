@@ -9,34 +9,33 @@ import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class BibliotecaTest {
-    ArrayList<Account> accountList;
-    Account account1 = new Account("John Cena", "111-1111", "password");
-    Account account2 = new Account("Peter Parker", "222-2222", "password2");
-    Account account3 = new Account("Elon Mustnot", "333-3333", "password3");
     private Biblioteca app;
     private BufferedReader bufferedReader;
     private PrintStream printStream;
 
     @Before
-    public void setUp() throws IOException {
-        accountList = new ArrayList<>();
-        accountList.add(account1);
-        accountList.add(account2);
-        accountList.add(account3);
+    public void setUp() {
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
-//        Login login = new Login(accountList, bufferedReader, printStream);
-//        app = new Biblioteca(login);
+        app = new Biblioteca(bufferedReader, printStream);
+    }
 
-        app.initBiblioteca();
+    @Test
+    public void shouldShowRightMessageWhenLoggedInAsSpecificUser() {
+        System.out.println(app.showWelcomeMessage());
+        Account mockAccount = new Account("John Cena", "111-1111", "password");
+        app.setAccount(mockAccount);
+        app.initBibliotecaWithLoggedInAccount();
+        assertThat(app.getAccount().getName(), equalTo("John Cena"));
+        verify(printStream).println("Welcome: John Cena");
     }
 
     @Test

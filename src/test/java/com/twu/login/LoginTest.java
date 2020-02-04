@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

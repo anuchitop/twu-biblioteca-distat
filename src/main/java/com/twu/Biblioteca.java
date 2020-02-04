@@ -2,6 +2,8 @@ package com.twu;
 
 import com.twu.menu.Menu;
 import com.twu.menu.MenuSelection;
+import com.twu.login.Account;
+import com.twu.login.Login;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,8 +36,8 @@ public class Biblioteca {
         accountList.add(account3);
         Login login = new Login(accountList, bufferedReader, printStream);
         // TODO: Check with Aj'Nong if this is practical
-//        while(login.getCurrentAccount().equals(null)) {
-//            login.initLogin();
+//        while(com.twu.login.getCurrentAccount().equals(null)) {
+//            com.twu.login.initLogin();
 //        }
         login.initLogin();
     }

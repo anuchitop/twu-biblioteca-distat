@@ -1,4 +1,4 @@
-package com.twu.menu;
+package com.twu.collection;
 
 import com.twu.Item;
 

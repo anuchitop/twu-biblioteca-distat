@@ -1,7 +1,6 @@
-package com.twu.menu;
+package com.twu.collection;
 
 import com.twu.menu.Menu;
-import com.twu.collection.Book;
 import com.twu.Collection;
 import com.twu.Item;
 

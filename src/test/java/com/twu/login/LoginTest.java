@@ -1,7 +1,5 @@
 package com.twu.login;
 
-import com.twu.Account;
-import com.twu.Login;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +9,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matcher.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -20,16 +17,16 @@ public class LoginTest {
     private Login login;
     private BufferedReader bufferedReader;
     private PrintStream printStream;
-
+    Account account1 = new Account("John Cena", "111-1111", "password");
+    Account account2 = new Account("Peter Parker", "222-2222", "password");
+    Account account3 = new Account("Elon Mustnot", "333-3333", "password");
+    
     @Before
     public void setUp() {
         accountList = new ArrayList<>();
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
         login = new Login(accountList, bufferedReader, printStream);
-        Account account1 = new Account("John Cena", "111-1111", "password");
-        Account account2 = new Account("Peter Parker", "222-2222", "password");
-        Account account3 = new Account("Elon Mustnot", "333-3333", "password");
         accountList.add(account1);
         accountList.add(account2);
         accountList.add(account3);
@@ -64,8 +61,9 @@ public class LoginTest {
     public void shouldReturnInvalidMessageWhenPasswordDoesNotMatch() throws IOException {
         // message returned should contain some Invalid message
         // Arrange
-        Account account1 = new Account("John Cena", "111-1111", "password");
+//        Account account1 = new Account("John Cena", "111-1111", "password");
         login.setCurrentAccount(account1);
+
         when(bufferedReader.readLine()).thenReturn("pass");
 
         // Action
@@ -78,7 +76,6 @@ public class LoginTest {
     @Test
     public void shouldReturnTrueIfPasswordMatches() throws IOException {
         // Arrange
-        Account account1 = new Account("John Cena", "111-1111", "password");
         login.setCurrentAccount(account1);
         when(bufferedReader.readLine()).thenReturn("password");
 

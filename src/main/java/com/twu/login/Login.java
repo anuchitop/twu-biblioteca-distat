@@ -1,5 +1,6 @@
-package com.twu;
+package com.twu.login;
 
+import com.twu.Biblioteca;
 import com.twu.menu.MenuSelection;
 
 import java.io.BufferedReader;
@@ -29,7 +30,7 @@ public class Login {
     }
 
     public void initLogin() throws IOException {
-        System.out.println("Please enter username: ");
+        System.out.println("Username: ");
         while(!this.verifyUsernameInput()) {
             System.out.println("Please enter username again:");
         }

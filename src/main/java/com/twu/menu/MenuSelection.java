@@ -1,7 +1,9 @@
 package com.twu.menu;
 
 import java.util.*;
-import com.twu.menu.Menu;
+
+import com.twu.collection.ListOfBooks;
+import com.twu.collection.ListOfMovies;
 
 public class MenuSelection {
     private Map<Integer, Menu> menuMap = new HashMap<>();

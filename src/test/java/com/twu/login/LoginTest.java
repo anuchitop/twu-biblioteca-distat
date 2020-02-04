@@ -38,7 +38,7 @@ public class LoginTest {
         when(bufferedReader.readLine()).thenReturn("11-11111");
 
         // Action
-        login.verifyUsernameInput();
+        login.verifyLibraryIDInput();
 
         // Assert
         verify(printStream).println("Invalid Username Format");
@@ -51,7 +51,7 @@ public class LoginTest {
         when(bufferedReader.readLine()).thenReturn("444-4444");
 
         // Action
-        login.verifyUsernameInput();
+        login.verifyLibraryIDInput();
 
         // Assert
         verify(printStream).println("User not existed");

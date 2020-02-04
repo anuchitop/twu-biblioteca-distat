@@ -9,22 +9,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class Login {
-    private ArrayList<Account> accountList;
+    private ArrayList<Account> accountList = new ArrayList<>();
     private BufferedReader bufferedReader;
     private PrintStream printStream;
+    private Account currentAccount;
 
     public Account getCurrentAccount() {
         return currentAccount;
     }
 
-    private Account currentAccount;
-
     public void setCurrentAccount(Account currentAccount) {
         this.currentAccount = currentAccount;
     }
 
-    public Login(ArrayList<Account> accountList, BufferedReader bufferedReader, PrintStream printStream) {
-        this.accountList = accountList;
+    public Login(BufferedReader bufferedReader, PrintStream printStream) {
+        this.fetchAccountListFromDB();
         this.bufferedReader = bufferedReader;
         this.printStream = printStream;
         setCurrentAccount(null);
@@ -32,13 +31,6 @@ public class Login {
 
     public void initLogin() throws IOException {
         this.verifyUsernameAndPassword();
-
-        // TODO: Get rid off this one
-        Biblioteca biblioteca = new Biblioteca();
-        System.out.println(biblioteca.showWelcomeMessage());
-        System.out.println("Welcome " + currentAccount.getName());
-        MenuSelection menu = new MenuSelection();
-        menu.startMenuSelection();
     }
 
     public void verifyUsernameAndPassword() throws IOException {
@@ -102,6 +94,15 @@ public class Login {
             return false;
         }
         return true;
+    }
+
+    public void fetchAccountListFromDB() {
+        Account account1 = new Account("John Cena", "111-1111", "password");
+        Account account2 = new Account("Peter Parker", "222-2222", "password2");
+        Account account3 = new Account("Elon Mustnot", "333-3333", "password3");
+        this.accountList.add(account1);
+        this.accountList.add(account2);
+        this.accountList.add(account3);
     }
 
     public String input() throws IOException {

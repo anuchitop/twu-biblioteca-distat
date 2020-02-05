@@ -1,44 +1,61 @@
 package com.twu.menu;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
+import com.twu.collection.Collection;
 
 public class MenuSelection {
     private Map<Integer, Menu> menuMap = new HashMap<>();
+    private BufferedReader bufferedReader;
+    private Printer printStream;
+    private Collection collection;
+    private ListOfBooks listOfBooks;
+    private ListOfMovies listOfMovies;
 
     public MenuSelection() {
+        collection = new Collection();
+        listOfBooks = new ListOfBooks();
+        listOfMovies = new ListOfMovies();
         this.mapMenuWithID();
+        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public MenuSelection(Printer printStream, BufferedReader bufferedReader) {
+        collection = new Collection();
+        this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
     }
 
     // TODO: Menu selection is still buggy and need refactor
-    public void startMenuSelection() {
+    public void startMenuSelection() throws IOException {
         listAllMenus();
         selectMenu();
     }
 
-    private Map<Integer, Menu> mapMenuWithID() {
-        this.menuMap.put(1, new ListOfBooks());
-        this.menuMap.put(2, new ListOfMovies());
-        this.menuMap.put(3, new QuitApplication());
-        return menuMap;
-    }
-
-    public void selectMenu() {
+    public void selectMenu() throws IOException {
         System.out.println("Enter Menu Number: ");
         this.getMenuByInput(userInput()).showMenuProperty();
     }
 
     public Menu getMenuByInput(Integer menuID) {
-        if (menuMap.keySet().contains(menuID)) {
+        System.out.println(menuMap.keySet());
+        if (menuMap.containsKey(menuID)) {
             return menuMap.get(menuID);
-        } else {
-            return null;
         }
+        return null;
+    }
+
+    private void mapMenuWithID() {
+        this.menuMap.put(1, listOfBooks);
+        this.menuMap.put(2, listOfMovies);
+        this.menuMap.put(3, new QuitApplication());
     }
 
     private Integer userInput() {
         Scanner menuID = new Scanner(System.in);
-        Integer input = menuID.nextInt();
-        return input;
+        return menuID.nextInt();
     }
 
     private void listAllMenus() {

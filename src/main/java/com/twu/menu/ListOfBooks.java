@@ -2,96 +2,145 @@ package com.twu.menu;
 
 import com.twu.collection.Book;
 import com.twu.collection.Collection;
-import com.twu.collection.Item;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class ListOfBooks implements ListOfItems, Menu {
-    private Collection collection = new Collection();
-    private Item selectedBook;
+public class ListOfBooks implements Menu {
+    private BufferedReader bufferedReader;
+    private Printer printStream;
+    private Collection collection;
+    private Book selectedBook;
 
-    @Override
-    public void listAllItems() {
-        System.out.println("=============== List of Books ===============");
-        for (Item book : collection.getBookList()) {
-            System.out.println(book);
-        }
-        System.out.println("=============================================");
-        System.out.println("Do you want to 1) Checkout or 2) Return or 3) Back to Main Menu");
-        System.out.print(">>> ");
-        this.checkoutOrReturn(this.userInput());
+    public Book getSelectedBook() {
+        return selectedBook;
     }
 
-    @Override
-    public Item selectItem(String input) {
-        Integer inputAsInteger = Integer.parseInt(input);
-        Integer convertedID = inputAsInteger - 1;
-        this.selectedBook = listOfItemsFromCollection().get(convertedID);
-        System.out.println(this.selectedBook);
+    public ListOfBooks() {
+        collection = new Collection();
+        this.printStream = new PrinterImpl();
+        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    }
 
+    public ListOfBooks(Printer printStream, BufferedReader bufferedReader) {
+        collection = new Collection();
+        this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
+    }
+
+    public void property() throws IOException {
+        printStream.println("=============== List of Books ===============");
+        listAllBooks();
+        printStream.println("=============================================");
+        checkoutOrReturn();
+    }
+
+    public void listAllBooks() {
+        for (Book book : collection.getBookList()) {
+            printStream.println(book.toString());
+        }
+    }
+
+    public Book selectBook() throws IOException {
+        printStream.println("Please select the book: ");
+        Integer bookID = Integer.parseInt(userInput());
+        this.selectedBook = listOfBooksFromCollections().get(bookID - 1);
         return this.selectedBook;
     }
 
-    @Override
-    public void checkoutOrReturn(String userChoice) {
-        if (userChoice.equals("1")) {
-            System.out.println("Please select the book you wish to checkout: ");
-            this.selectItem(this.userInput());
-            System.out.println("Do you wish to checkout this Book (Y/N) ?");
-            String result = this.checkoutItem(this.userInput());
-            System.out.println(result);
-            this.listAllItems();
-        } else if (userChoice.equals("2")) {
-            System.out.println("Please select the book you wish to return: ");
-            this.selectItem(this.userInput());
-            System.out.println("Do you wish to return this Book (Y/N) ?");
-            this.returnItem(this.userInput());
-            this.listAllItems();
-        } else if (userChoice.equals("3")) {
-            menu.startMenuSelection();
+    public void checkoutOrReturn() throws IOException {
+        printStream.println("Do you want to 1) Checkout or 2) Return or 3) Back to Main Menu");
+        printStream.print(">>> ");
+        Integer userChoice = Integer.parseInt(userInput());
+        switch (userChoice) {
+            case 1:
+                selectBook();
+                doCheckout();
+                break;
+            case 2:
+                selectBook();
+                doReturn();
+                break;
+            case 3:
+                menu.startMenuSelection();
+                break;
+            default:
+                printStream.println("Invalid, Please fill again");
+                this.property();
+                break;
+        }
+    }
+
+    // ===================== Checkout ===================== //
+    public void doCheckout() throws IOException {
+        checkoutItem();
+        confirmCheckOut();
+        // Back to main property
+        property();
+    }
+
+    public void checkoutItem() {
+        printStream.println(selectedBook.toString());
+        printStream.println("Do you wish to checkout this Book (Y/N) ?");
+    }
+
+    public void confirmCheckOut() throws IOException {
+        Boolean userConfirmation = confirm();
+        if (!userConfirmation || !this.selectedBook.getIsAvailable()) {
+            printStream.println("Invalid Checkout");
         } else {
-            System.out.println("Invalid, Please fill again");
-            this.listAllItems();
+            this.selectedBook.setAvailable(false);
+            printStream.println("You have checkout " + this.selectedBook);
+        }
+    }
+    // ==================================================== //
+
+
+    // ===================== Return ===================== //
+
+    public void doReturn() throws IOException {
+        returnItem();
+        confirmReturn();
+        // Back to main property
+        property();
+    }
+    public void returnItem() {
+        printStream.println(selectedBook.toString());
+        printStream.println("Do you wish to return this Book (Y/N) ?");
+    }
+
+    public void confirmReturn() throws IOException {
+        Boolean userConfirmation = confirm();
+        if (!userConfirmation || this.selectedBook.getIsAvailable()) {
+            printStream.println("Invalid Return");
+        } else {
+            this.selectedBook.setAvailable(true);
+            printStream.println("You have return " + this.selectedBook);
         }
     }
 
-    @Override
-    public String checkoutItem(String condition) {
-        if (!condition.equals("Y") || !this.selectedBook.getIsAvailable()) {
-            return "Invalid Checkout";
-        }
+    // ==================================================== //
 
-        this.selectedBook.setAvailable(false);
-        return "You have checkout " + this.selectedBook;
+
+    public String userInput() throws IOException {
+        return bufferedReader.readLine();
     }
 
-    @Override
-    public void returnItem(String condition) {
-        if (condition.equals("Y")) {
-            if (this.selectedBook.getIsAvailable().equals(false)) {
-                this.selectedBook.setAvailable(true);
-                System.out.println("You have return " + this.selectedBook);
-            } else {
-                System.out.println("Invalid Return");
-            }
-        }
-    }
-
-    @Override
-    public String userInput() {
-        Scanner scanner = new Scanner(System.in);
-        String s = scanner.next();
-        return s;
+    public Boolean confirm() throws IOException {
+        String userInput = userInput();
+        return userInput.equals("Y");
     }
 
 
-    public ArrayList<Book> listOfItemsFromCollection() {
+    public ArrayList<Book> listOfBooksFromCollections() {
         return this.collection.getBookList();
     }
 
     @Override
-    public void showMenuProperty() {
-        this.listAllItems();
+    public void showMenuProperty() throws IOException {
+        this.property();
     }
 }

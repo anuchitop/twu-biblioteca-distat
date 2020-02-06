@@ -14,19 +14,21 @@ public class ListOfMovies implements Menu {
     private Printer printStream;
     private Collection collection;
     private Movies selectedMovies;
+    private MenuSelection menuSelection;
 
     public Movies getSelectedMovies() {
         return selectedMovies;
     }
 
-    public ListOfMovies() {
-        collection = new Collection();
+    public ListOfMovies(Collection collection) {
+        this.collection = collection;
+//        this.menuSelection =  new MenuSelection(collection);
         this.printStream = new PrinterImpl();
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public ListOfMovies(Printer printStream, BufferedReader bufferedReader) {
-        collection = new Collection();
+    public ListOfMovies(Collection collection, Printer printStream, BufferedReader bufferedReader) {
+        this.collection = collection;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
     }
@@ -65,7 +67,8 @@ public class ListOfMovies implements Menu {
                 doReturn();
                 break;
             case 3:
-                menu.startMenuSelection();
+                menuSelection = new MenuSelection(collection);
+                menuSelection.startMenuSelection();
                 break;
             default:
                 printStream.println("Invalid, Please fill again");

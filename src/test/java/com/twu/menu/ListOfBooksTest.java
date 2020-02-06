@@ -20,7 +20,7 @@ public class ListOfBooksTest {
     BufferedReader bufferedReader = mock(BufferedReader.class);
     Printer printStream = new MockPrintStream();
     Collection collection = new Collection();
-    ListOfBooks listOfBooks = new ListOfBooks(printStream, bufferedReader);
+    ListOfBooks listOfBooks = new ListOfBooks(collection, printStream, bufferedReader);
 
     @Test
     public void shouldReturnProperSetOfBooksWhenListAllBooks() {

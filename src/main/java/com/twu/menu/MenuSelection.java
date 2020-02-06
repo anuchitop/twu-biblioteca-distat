@@ -9,24 +9,23 @@ import com.twu.collection.Collection;
 public class MenuSelection {
     private Map<Integer, Menu> menuMap = new HashMap<>();
     private BufferedReader bufferedReader;
-    private Printer printStream;
+//    private Printer printStream;
     private Collection collection;
     private ListOfBooks listOfBooks;
     private ListOfMovies listOfMovies;
 
-    public MenuSelection() {
-        collection = new Collection();
-        listOfBooks = new ListOfBooks();
-        listOfMovies = new ListOfMovies();
-        this.mapMenuWithID();
+    public MenuSelection(Collection collection) throws IOException {
+        this.collection = collection;
+        listOfBooks = new ListOfBooks(collection);
+        listOfMovies = new ListOfMovies(collection);
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public MenuSelection(Printer printStream, BufferedReader bufferedReader) {
-        collection = new Collection();
-        this.printStream = printStream;
-        this.bufferedReader = bufferedReader;
-    }
+//    public MenuSelection(Printer printStream, BufferedReader bufferedReader) throws IOException {
+//        collection = new Collection();
+//        this.printStream = printStream;
+//        this.bufferedReader = bufferedReader;
+//    }
 
     // TODO: Menu selection is still buggy and need refactor
     public void startMenuSelection() throws IOException {
@@ -40,17 +39,13 @@ public class MenuSelection {
     }
 
     public Menu getMenuByInput(Integer menuID) {
-        System.out.println(menuMap.keySet());
-        if (menuMap.containsKey(menuID)) {
-            return menuMap.get(menuID);
+        if (menuID.equals(1)) {
+            return listOfBooks;
+        } else if (menuID.equals(2)) {
+            return listOfMovies;
+        } else {
+            return new QuitApplication();
         }
-        return null;
-    }
-
-    private void mapMenuWithID() {
-        this.menuMap.put(1, listOfBooks);
-        this.menuMap.put(2, listOfMovies);
-        this.menuMap.put(3, new QuitApplication());
     }
 
     private Integer userInput() {

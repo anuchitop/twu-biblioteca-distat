@@ -20,7 +20,7 @@ public class ListOfMoviesTest {
     BufferedReader bufferedReader = mock(BufferedReader.class);
     Printer printStream = new MockPrintStream();
     Collection collection = new Collection();
-    ListOfMovies listOfMovies = new ListOfMovies(printStream, bufferedReader);
+    ListOfMovies listOfMovies = new ListOfMovies(collection, printStream, bufferedReader);
 
 
     @Test

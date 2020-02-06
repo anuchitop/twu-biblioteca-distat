@@ -2,8 +2,6 @@ package com.twu;
 
 import com.twu.collection.Collection;
 import com.twu.login.Login;
-import com.twu.menu.ListOfBooks;
-import com.twu.menu.ListOfMovies;
 import com.twu.menu.Menu;
 import com.twu.menu.MenuSelection;
 import com.twu.login.Account;
@@ -13,16 +11,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public class Biblioteca {
-    private Account account;
-    private Login login;
     private BufferedReader bufferedReader;
     private PrintStream printStream;
     private Collection collection;
     private MenuSelection menuSelection;
+    private Login login;
+    private Account account;
 
-    public Biblioteca(BufferedReader bufferedReader, PrintStream printStream) throws IOException {
+    public Biblioteca(BufferedReader bufferedReader, PrintStream printStream) {
         collection = new Collection();
-        menuSelection = new MenuSelection(collection);
         this.bufferedReader = bufferedReader;
         this.printStream = printStream;
     }
@@ -49,6 +46,7 @@ public class Biblioteca {
     }
 
     public void startMenuSelection() throws IOException {
+        menuSelection = new MenuSelection(collection, account);
         menuSelection.startMenuSelection();
     }
 

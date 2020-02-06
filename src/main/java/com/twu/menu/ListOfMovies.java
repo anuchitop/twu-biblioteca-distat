@@ -2,6 +2,7 @@ package com.twu.menu;
 
 import com.twu.collection.Movies;
 import com.twu.collection.Collection;
+import com.twu.login.Account;
 
 
 import java.io.BufferedReader;
@@ -15,19 +16,21 @@ public class ListOfMovies implements Menu {
     private Collection collection;
     private Movies selectedMovies;
     private MenuSelection menuSelection;
+    private Account currentAccount;
 
     public Movies getSelectedMovies() {
         return selectedMovies;
     }
 
-    public ListOfMovies(Collection collection) {
+    public ListOfMovies(Collection collection, Account currentAccount) {
+        this.currentAccount = currentAccount;
         this.collection = collection;
-//        this.menuSelection =  new MenuSelection(collection);
         this.printStream = new PrinterImpl();
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public ListOfMovies(Collection collection, Printer printStream, BufferedReader bufferedReader) {
+    public ListOfMovies(Collection collection, Account account, Printer printStream, BufferedReader bufferedReader) {
+        this.currentAccount = account;
         this.collection = collection;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
@@ -67,7 +70,7 @@ public class ListOfMovies implements Menu {
                 doReturn();
                 break;
             case 3:
-                menuSelection = new MenuSelection(collection);
+                menuSelection = new MenuSelection(collection, currentAccount);
                 menuSelection.startMenuSelection();
                 break;
             default:
@@ -96,6 +99,7 @@ public class ListOfMovies implements Menu {
             printStream.println("Invalid Checkout");
         } else {
             this.selectedMovies.setAvailable(false);
+            this.selectedMovies.setOwner(currentAccount.getName());
             printStream.println("You have checkout " + this.selectedMovies);
         }
     }

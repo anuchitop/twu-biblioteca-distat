@@ -1,33 +1,21 @@
 package com.twu.menu;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 import com.twu.collection.Collection;
+import com.twu.login.Account;
 
 public class MenuSelection {
-    private Map<Integer, Menu> menuMap = new HashMap<>();
-    private BufferedReader bufferedReader;
-//    private Printer printStream;
-    private Collection collection;
     private ListOfBooks listOfBooks;
     private ListOfMovies listOfMovies;
+    private Account currentAccount;
 
-    public MenuSelection(Collection collection) throws IOException {
-        this.collection = collection;
-        listOfBooks = new ListOfBooks(collection);
-        listOfMovies = new ListOfMovies(collection);
-        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    public MenuSelection(Collection collection, Account account) {
+        currentAccount = account;
+        listOfBooks = new ListOfBooks(collection, currentAccount);
+        listOfMovies = new ListOfMovies(collection, currentAccount);
     }
 
-//    public MenuSelection(Printer printStream, BufferedReader bufferedReader) throws IOException {
-//        collection = new Collection();
-//        this.printStream = printStream;
-//        this.bufferedReader = bufferedReader;
-//    }
-
-    // TODO: Menu selection is still buggy and need refactor
     public void startMenuSelection() throws IOException {
         listAllMenus();
         selectMenu();

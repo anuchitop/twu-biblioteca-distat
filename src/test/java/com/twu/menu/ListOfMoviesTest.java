@@ -2,6 +2,7 @@ package com.twu.menu;
 
 import com.twu.collection.Movies;
 import com.twu.collection.Collection;
+import com.twu.login.Account;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -20,7 +21,8 @@ public class ListOfMoviesTest {
     BufferedReader bufferedReader = mock(BufferedReader.class);
     Printer printStream = new MockPrintStream();
     Collection collection = new Collection();
-    ListOfMovies listOfMovies = new ListOfMovies(collection, printStream, bufferedReader);
+    Account account = new Account("John Cena", "111-1111", "password");
+    ListOfMovies listOfMovies = new ListOfMovies(collection, account, printStream, bufferedReader);
 
 
     @Test

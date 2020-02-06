@@ -2,6 +2,7 @@ package com.twu.menu;
 
 import com.twu.collection.Book;
 import com.twu.collection.Collection;
+import com.twu.login.Account;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -20,7 +21,8 @@ public class ListOfBooksTest {
     BufferedReader bufferedReader = mock(BufferedReader.class);
     Printer printStream = new MockPrintStream();
     Collection collection = new Collection();
-    ListOfBooks listOfBooks = new ListOfBooks(collection, printStream, bufferedReader);
+    Account account = new Account("John Cena", "111-1111", "password");
+    ListOfBooks listOfBooks = new ListOfBooks(collection, account, printStream, bufferedReader);
 
     @Test
     public void shouldReturnProperSetOfBooksWhenListAllBooks() {
@@ -101,12 +103,12 @@ public class ListOfBooksTest {
     public void shouldReturnAvailabilityTrueWhenUserReturnABook() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
         listOfBooks.selectBook();
-
+//
         when(bufferedReader.readLine()).thenReturn("Y");
-
+//
         listOfBooks.checkoutItem();
         listOfBooks.confirmCheckOut();
-
+//
         assertEquals(false, listOfBooks.getSelectedBook().getIsAvailable());
 
         when(bufferedReader.readLine()).thenReturn("Y");

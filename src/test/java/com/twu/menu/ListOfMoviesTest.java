@@ -24,7 +24,6 @@ public class ListOfMoviesTest {
     Account account = new Account("John Cena", "111-1111", "password");
     ListOfMovies listOfMovies = new ListOfMovies(collection, account, printStream, bufferedReader);
 
-
     @Test
     public void shouldReturnProperSetOfMoviesWhenListAllMovies() {
         List<String> expected = Arrays.asList("1: Friday 13th by Distat P. | Availability: true", "2: How to train your cat by Distat P. Jr. | Availability: true", "2: Drunkirk by Distat Jr. and Da Gang | Availability: true");
